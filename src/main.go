@@ -6,7 +6,8 @@ import (
 	"os"
 
 	"github.com/sugimoto-ne/go_practice.git/config"
-	"github.com/sugimoto-ne/go_practice.git/logger"
+	infrastracture "github.com/sugimoto-ne/go_practice.git/infrastracture"
+	"github.com/sugimoto-ne/go_practice.git/infrastracture/logger"
 )
 
 func main() {
@@ -33,12 +34,12 @@ func run(ctx context.Context) error {
 		return err
 	}
 
-	mux, err := NewMux(cfg)
+	mux, err := infrastracture.NewMux(cfg)
 	if err != nil {
 		return err
 	}
 
-	server := NewServer(cfg, mux)
+	server := infrastracture.NewServer(cfg, mux)
 
 	serverStopErr := server.Run(ctx)
 	systemLogger.Logger.Error("shutdown error", serverStopErr)

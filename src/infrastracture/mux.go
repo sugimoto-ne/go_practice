@@ -1,4 +1,4 @@
-package main
+package infrastracture
 
 import (
 	"encoding/json"
@@ -8,7 +8,7 @@ import (
 
 	"github.com/go-chi/chi/v5"
 	"github.com/sugimoto-ne/go_practice.git/config"
-	"github.com/sugimoto-ne/go_practice.git/logger"
+	"github.com/sugimoto-ne/go_practice.git/infrastracture/logger"
 )
 
 func NewMux(cfg *config.Config) (http.Handler, error) {
