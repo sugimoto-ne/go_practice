@@ -24,7 +24,7 @@ func run(ctx context.Context) error {
 	if err != nil {
 		return err
 	}
-	systemLogger, err := logger.NewLogger("./logs", cfg.Env, "sys", "json")
+	systemLogger, err := logger.NewLogger("../logs", cfg.Env, "sys", "json")
 	if err != nil {
 		return err
 	}

@@ -13,15 +13,15 @@ import (
 
 func NewMux(cfg *config.Config) (http.Handler, error) {
 	// 各種ログの初期化
-	reqLogger, err := logger.NewLogger("./logs", cfg.Env, "req", "json")
+	reqLogger, err := logger.NewLogger("../logs", cfg.Env, "req", "json")
 	if err != nil {
 		return nil, err
 	}
-	appLogger, err := logger.NewLogger("./logs", cfg.Env, "application", "json")
+	appLogger, err := logger.NewLogger("../logs", cfg.Env, "application", "json")
 	if err != nil {
 		return nil, err
 	}
-	resLogger, err := logger.NewLogger("./logs", cfg.Env, "res", "json")
+	resLogger, err := logger.NewLogger("../logs", cfg.Env, "res", "json")
 	if err != nil {
 		return nil, err
 	}

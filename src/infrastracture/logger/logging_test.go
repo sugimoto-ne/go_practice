@@ -21,8 +21,8 @@ func TestNewLogger(t *testing.T) {
 
 	testLogger.Logger.Info("test")
 
-	filePath := "./logs/test/test.json"
-	dirPath := "./logs/test"
+	filePath := "../logs/test/test.json"
+	dirPath := "../logs/test"
 	err = os.Remove(filePath)
 	if err != nil {
 		t.Fatalf("want to delete %s, but got error: %v", filePath, err)
