@@ -75,6 +75,13 @@ func NewMux(cfg *config.Config) (http.Handler, error) {
 			UserRepository: UserRepo,
 		},
 	}
+
+	ListUserController := userController.ListUser{
+		Service: usecases.ListUser{
+			UserRepository: UserRepo,
+		},
+	}
+	mux.Get("/users", ListUserController.ServeHTTP)
 	mux.Get("/users/{id}", GetUserController.ServeHTTP)
 
 	return mux, nil

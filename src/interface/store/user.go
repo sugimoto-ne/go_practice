@@ -27,3 +27,7 @@ func (ur *UserRepository) FindById(id domain.UserID) (*domain.User, error) {
 
 	return nil, errors.New("not found")
 }
+
+func (ur *UserRepository) FindAll() (domain.Users, error) {
+	return Users, nil
+}
