@@ -7,8 +7,13 @@ import (
 	"time"
 
 	"github.com/go-chi/chi/v5"
+	"github.com/go-playground/validator/v10"
 	"github.com/sugimoto-ne/go_practice.git/config"
+	"github.com/sugimoto-ne/go_practice.git/domain"
 	"github.com/sugimoto-ne/go_practice.git/infrastracture/logger"
+	userController "github.com/sugimoto-ne/go_practice.git/interface/controllers/user"
+	"github.com/sugimoto-ne/go_practice.git/interface/store"
+	usecases "github.com/sugimoto-ne/go_practice.git/usecases/user"
 )
 
 func NewMux(cfg *config.Config) (http.Handler, error) {
@@ -49,6 +54,28 @@ func NewMux(cfg *config.Config) (http.Handler, error) {
 		// レスポンスログ
 		resLogger.Logger.Info("from hellohandler", "body", rsp, "to", r.RemoteAddr)
 	})
+
+	v := validator.New()
+
+	UserRepo := &store.UserRepository{
+		LastID: domain.UserID(len(store.Users)),
+	}
+
+	AddUserController := userController.AddUser{
+		Service: usecases.AddUser{
+			UserRepository: UserRepo,
+		},
+		Validator: v,
+	}
+
+	mux.Post("/users", AddUserController.ServeHTTP)
+
+	GetUserController := userController.ShowUser{
+		Service: usecases.GetUser{
+			UserRepository: UserRepo,
+		},
+	}
+	mux.Get("/users/{id}", GetUserController.ServeHTTP)
 
 	return mux, nil
 }

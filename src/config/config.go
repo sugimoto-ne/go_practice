@@ -6,7 +6,7 @@ import (
 
 type Config struct {
 	Env                     string `env:"APP_ENV" envDefault:"dev"`
-	Port                    int    `env:"PORT" envDefault:"8080"`
+	Port                    int    `env:"PORT" envDefault:"8088"`
 	ReadHeaderTimeoutSecond int    `env:"READ_HEADER_TIMEOUT_SECOND" envDefault:"20"`
 }
 
